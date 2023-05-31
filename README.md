@@ -1,8 +1,8 @@
-#IT114-450
+IT114-450
 
-#Abdullah Al Salman
+Abdullah Al Salman
 
-#Greetings! I am Abdullah, currently a junior at NJIT (New Jersey Institute of Technology), pursuing a major in Information Technology. I am currently in my Junior Year.
+Greetings! I am Abdullah, currently a junior at NJIT (New Jersey Institute of Technology), pursuing a major in Information Technology. I am currently in my Junior Year.
 
 
 
