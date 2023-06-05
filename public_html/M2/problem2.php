@@ -7,6 +7,8 @@ function getTotal($arr) {
     echo "<br>Processing Array:<br><pre>" . var_export($arr, true) . "</pre>";
     $total = 0.00;
     //TODO do adding here
+
+      #aa2836/6-4-2023
     for ($x = 0; $x < count($arr); $x++){$total = $total + $arr[$x]; }
     //TODO do rounding stuff here
     $total = round($total,2);
