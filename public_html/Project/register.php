@@ -1,5 +1,5 @@
 
-<?php require_once(__DIR__ . "/../../lib/functions.php")
+<?php require_once(__DIR__ . "/../../partials/nav.php")
 ?>
 <form onsubmit="return validate(this)" method="POST">
     <div>
@@ -59,7 +59,7 @@ if(isset($_POST["email"])&& isset($_POST["password"])&& isset($_POST["confirm"])
         $hasError = true;
     }
     if (!$hasError){
-        //echo "Welcome, $email<br>";
+        //echo "Welcome, $email <br> ";
     }
     $hash = password_hash($password, PASSWORD_BCRYPT);
     $db = getDB();
