@@ -1,80 +1,172 @@
-## Project Name: (Which Project)
-### Project Summary: (Copy from proposal)
-### Github Link: [https://github.com/aa2836/IT202-451/blob/prod/public_html/Project](https://github.com/aa2836/IT202-451/blob/prod/public_html/Project)
-### Project Board Link: 
-### Website Link: (https://aa2836-prod.herokuapp.com/Project)
-### API Link: (the link to the documentation of your chosen API)
-### Your Name:Abdullah Al Salman
-
- 
- 
-### Proposal Checklist and Evidence
-
-- Milestone 1
-    -[ ] \(mm/dd/yyyy of completion) Feature Title (User will be able to register a new account)
-
-    [Milestone 1](https://github.com/aa2836/IT202-451/blob/Mmilestone1/public_html/Project/milestone1.md)
-
-    [https://aa236-prod.herokuapp.com/Project/register.php](https://aa236-prod.herokuapp.com/Project/register.php)
-    -[ ] \(mm/dd/yyyy of completion) Feature Title (User will be able to login to their account (given they enter the correct credentials))
-
-    [Milestone 1](https://github.com/aa2836/IT202-451/blob/Mmilestone1/public_html/Project/milestone1.md)
-
-    [https://aa236-prod.herokuapp.com/Project/login.php](https://aa236-prod.herokuapp.com/Project/login.php) 
-
-    -[ ] \(mm/dd/yyyy of completion) Feature Title (User will be able to logout)
-
-    [Milestone 1](https://github.com/aa2836/IT202-451/blob/Mmilestone1/public_html/Project/milestone1.md)
-
-    [https://aa236-prod.herokuapp.com/Project/logout.php](https://aa236-prod.herokuapp.com/Project/login.php) 
-
-    -[ ] \(mm/dd/yyyy of completion) Feature Title (Basic security rules implemented)
-
-
-    [Milestone 1](https://github.com/aa2836/IT202-451/blob/Mmilestone1/public_html/Project/milestone1.md)
-
-    [https://aa236-prod.herokuapp.com/Project/profile.php](https://aa236-prod.herokuapp.com/Project/logout.php) 
-
-    -[ ] \(mm/dd/yyyy of completion) Feature Title (Basic Roles implemented)
-
-    [Milestone 1](https://github.com/aa2836/IT202-451/blob/Mmilestone1/public_html/Project/milestone1.md)
-
-    [https://aa236-prod.herokuapp.com/Project/Create_role.php](https://aa236-prod.herokuapp.com/Project/Create_role.php) 
-
-    -[ ] \(mm/dd/yyyy of completion) Feature Title (Site should have basic styles/theme applied; everything should be styled)
-
-    [Milestone 1](https://github.com/aa2836/IT202-451/blob/Mmilestone1/public_html/Project/milestone1.md)
-
-    [https://aa236-prod.herokuapp.com/Project/home.php](https://aa236-prod.herokuapp.com/Project/home.php)
-
-    [https://aa236-prod.herokuapp.com/Project/styles.css.php](https://aa236-prod.herokuapp.com/Project/styles.css.php)  
-
-    -[ ] \(mm/dd/yyyy of completion) Feature Title (Any output messages/errors should be “user friendly”)
-
-    [Milestone 1](https://github.com/aa2836/IT202-451/blob/Mmilestone1/public_html/Project/milestone1.md)
-
-    [https://aa236-prod.herokuapp.com/Project/logout.php](https://aa236-prod.herokuapp.com/Project/styles.css.php)
-     
-    -[ ] \(mm/dd/yyyy of completion) Feature Title (User will be able to see their profile)
-
-    [Milestone 1](https://github.com/aa2836/IT202-451/blob/Mmilestone1/public_html/Project/milestone1.md)
-
-    [https://aa236-prod.herokuapp.com/Project/profile.php](https://aa236-prod.herokuapp.com/Project/logout.php) 
-
-    -[ ] \(mm/dd/yyyy of completion) Feature Title (User will be able to edit their profile)
-
-    [Milestone 1](https://github.com/aa2836/IT202-451/blob/Mmilestone1/public_html/Project/milestone1.md)
-
-    [https://aa236-prod.herokuapp.com/Project/profile.php](https://aa236-prod.herokuapp.com/Project/logout.php) 
-    
-    
-    
-   
-- Milestone 2
-  - (add link to milestone2.md from milestone2 branch)
-- Milestone 3
-  - (add link to milestone3.md from milestone3 branch)
-- Milestone 4
-  - (add link to milestone4.md from milestone4 branch)
-- Demo Link
-  - (add youtube link to unlisted or public demo) Note you'll need to verify your youtube account to upload videos > 15mins
+<table><tr><td> <em>Assignment: </em> IT202 Milestone1 Deliverable</td></tr>
+<tr><td> <em>Student: </em> Abdullah Salman (aa2836)</td></tr>
+<tr><td> <em>Generated: </em> 7/18/2023 1:44:31 PM</td></tr>
+<tr><td> <em>Grading Link: </em> <a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT202-451-M23/it202-milestone1-deliverable/grade/aa2836" target="_blank">Grading</a></td></tr></table>
+<table><tr><td> <em>Instructions: </em> <ol><li>Checkout Milestone1 branch</li><li>Create a milestone1.md file in your Project folder</li><li>Git add/commit/push this empty file to Milestone1 (you'll need the link later)</li><li>Fill in the deliverable items<ol><li>For each feature, add a direct link (or links) to the expected file the implements the feature from Heroku Prod (I.e,&nbsp;<a href="https://mt85-prod.herokuapp.com/Project/register.php">https://mt85-prod.herokuapp.com/Project/register.php</a>)</li></ol></li><li>Ensure your images display correctly in the sample markdown at the bottom</li><ol><li>NOTE: You may want to try to capture as much checklist evidence in your screenshots as possible, you do not need individual screenshots and are recommended to combine things when possible. Also, some screenshots may be reused if applicable.</li></ol><li>Save the submission items</li><li>Copy/paste the markdown from the "Copy markdown to clipboard link" or via the download button</li><li>Paste the code into the milestone1.md file or overwrite the file</li><li>Git add/commit/push the md file to Milestone1</li><li>Double check the images load when viewing the markdown file (points will be lost for invalid/non-loading images)</li><li>Make a pull request from Milestone1 to dev and merge it (resolve any conflicts)<ol><li>Make sure everything looks ok on heroku dev</li></ol></li><li>Make a pull request from dev to prod (resolve any conflicts)<ol><li>Make sure everything looks ok on heroku prod</li></ol></li><li>Submit the direct link from github prod branch to the milestone1.md file (no other links will be accepted and will result in 0)</li></ol></td></tr></table>
+<table><tr><td> <em>Deliverable 1: </em> Feature: User will be able to register a new account </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Add one or more screenshots of the application showing the form and validation errors per the feature requirements</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-16T23.04.52Screenshot%202023-07-16%20185214.png.webp?alt=media&token=9820ea11-955d-40df-b51c-da5cfe537320"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of invalid email and password not matched<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-16T23.04.55Screenshot%202023-07-16%20185812.png.webp?alt=media&token=1def50c3-fcb7-4e5c-b50f-4f7bc443855e"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of email not availlable<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-16T23.05.02Screenshot%202023-07-16%20185958.png.webp?alt=media&token=1871ce81-e238-4135-89e8-ac2164585fc2"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of username not available <br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-16T23.05.06Screenshot%202023-07-16%20190430.png.webp?alt=media&token=4a848074-ce45-4fd9-b4ee-a8be10c0f984"/></td></tr>
+<tr><td> <em>Caption:</em> <p> form with valid data filled in before the form is submitted<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Add a screenshot of the Users table with data in it</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-17T01.19.44Screenshot%202023-07-16%20211826.png.webp?alt=media&token=244ee4a6-eb7c-40f6-9afd-5deed700ee62"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of users table<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 3: </em> Add the related pull request(s) for this feature</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/aa2836/IT202-451/pull/9">https://github.com/aa2836/IT202-451/pull/9</a> </td></tr>
+<tr><td> <em>Sub-Task 4: </em> Explain briefly how the process/code works</td></tr>
+<tr><td> <em>Response:</em> <div>When the user sends the form, it activates a JavaScript function called "validate."<br>However, this function is not complete yet (it's marked as TODO 1). Its<br>purpose is to check if the form entries are valid. If there are<br>any errors, it should return false. If the form is valid, it should<br>return true. On the server side, using PHP code, after the form is<br>submitted, the code checks whether the necessary form fields (email, password, confirm, and<br>username) have been filled out. If all the required fields are filled, the<br>code proceeds to process the form data. If any of the required fields<br>are missing, it shows an error message indicating which fields need to be<br>filled. On the server side, PHP code is utilized to check and sanitize<br>the form data. If the email field is left blank, an error message<br>is displayed. Both the email and username undergo a verification process to confirm<br>their validity. The password is scrutinized for length requirements and to ensure it<br>corresponds with the confirm password field. If there are any issues during this<br>validation process, error messages are shown to the user. When a user decides<br>to change their password, they're required to input their current password and enter<br>their new password twice&nbsp; Upon receiving this information, a PHP script retrieves the<br>existing encrypted password from the database and utilizes a function called "password_verify" to<br>confirm if the given current password aligns with the one stored in the<br>database. If there's a match, the script encrypts the new password using another<br>function known as "password_hash" that operates with a BCRYPT algorithm, and then this<br>encrypted new password is updated in the database.&nbsp;After validating the user's inputs, the<br>script updates the email and username in the database for the user with<br>the corresponding ID using a UPDATE SQL statement. After the update, the script<br>queries the database again to retrieve fresh user data, ensuring that the changes<br>were correctly saved.</div><div><br></div><div><br></div><br></td></tr>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 2: </em> Feature: User will be able to login to their account </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Add one or more screenshots of the application showing the form and validation errors per the feature requirements</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-17T02.24.52Screenshot%202023-07-16%20221128.png.webp?alt=media&token=0122a6b3-c0e5-4ee9-9eb3-f4eb0d1a837d"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of password missmatch validation<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-17T02.28.01Screenshot%202023-07-16%20222747.png.webp?alt=media&token=fca31068-230a-4e3f-be00-014f832b2ea0"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of tryiing to log in baesd on non-existing user<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Add a screenshot of successful login</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-17T02.28.51Screenshot%202023-07-16%20222425.png.webp?alt=media&token=fdb52f79-887c-4ea0-ac2f-1e74e2a7fd85"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of successful log in<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 3: </em> Add the related pull request(s) for this feature</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/aa2836/IT202-451/pull/10">https://github.com/aa2836/IT202-451/pull/10</a> </td></tr>
+<tr><td> <em>Sub-Task 4: </em> Explain briefly how the process/code works</td></tr>
+<tr><td> <em>Response:</em> <p>n the login.php file, a form is displayed for users to enter their<br>email and password. The form&#39;s onsubmit event triggers a JavaScript function called validate()<br>to perform client-side validation. If the client-side validation is successful (the validate() function<br>returns true), the form is submitted. On form submission, the PHP code in<br>the same file handles the form data.&nbsp;On the server side the code checks<br>if the email and password fields are set in the $_POST superglobal array.<br>It then performs several validation checks such as checking for empty values and<br>validating the email format using filters. If any validation errors occur, an error<br>message is displayed. If there are no errors, the code connects to the<br>database, retrieves the hashed password associated with the provided email, and verifies the<br>password using password_verify().&nbsp;If the password is valid, the user is considered authenticated, and<br>their email is stored in the $_SESSION superglobal array. Finally, the user is<br>redirected to the home.php page. The password entered by the user is hashed<br>using the password_hash() function with the PASSWORD_BCRYPT algorithm. The resulting hash is stored<br>in the database. During login, the stored hash is retrieved, and password_verify() is<br>used to compare the provided password with the stored hash.&nbsp;<br></p><br></td></tr>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 3: </em> Feat: Users will be able to logout </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Add a screenshot showing the successful logout message</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-17T02.51.38Screenshot%202023-07-16%20225123.png.webp?alt=media&token=50086bc0-08b7-4b87-b3b6-df1d8f27d54d"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of successfull log out<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Add a screenshot showing the logged out user can't access a login-protected page</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-17T02.59.50Screenshot%202023-07-16%20225629.png.webp?alt=media&token=bb84a5d7-1b10-4af5-955e-618d58967f15"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc showing logged out users can&#39;t accessa log in protected page<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 3: </em> Add the related pull request(s) for this feature</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/aa2836/IT202-451/pull/10">https://github.com/aa2836/IT202-451/pull/10</a> </td></tr>
+<tr><td> <em>Sub-Task 4: </em> Explain briefly how the process/code works</td></tr>
+<tr><td> <em>Response:</em> <p>The session is started with session_start() allowing data to be stored and accessed<br>across requests. User data, including ID, email, username, and roles, is stored in<br><code>$_SESSION[&quot;user&quot;]</code> after successful authentication. the session is started again, and user information is<br>retrieved from <code>$_SESSION[&quot;user&quot;]</code>. Authentication is checked using <code>$_SESSION[&quot;user&quot;]</code>, enabling access control. Flash messages<br>are stored in the session using <code>flash()</code> and displayed on subsequent pages. Logging<br>out involves starting the session, storing a success message, and redirecting to the<br>login page. The flash message is retrieved and displayed on the login page.<br><br></p><br></td></tr>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 4: </em> Feature: Basic Security Rules Implemented / Basic Roles Implemented </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Add a screenshot showing the logged out user can't access a login-protected page (may be the same as similar request)</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-17T03.24.40Screenshot%202023-07-16%20225629.png.webp?alt=media&token=9eb02dd0-3790-4a54-964c-44d265e9a327"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc showing logged out users can&#39;t accessa log in protected page<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Add a screenshot showing a user without an appropriate role can't access the role-protected page</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T15.29.20Screenshot%202023-07-18%20112815.png.webp?alt=media&token=a5e62107-8802-4b4a-96c2-34a85faadd1f"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc showing something about not having proper role or permission <br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 3: </em> Add a screenshot of the Roles table with valid data</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T15.30.56Screenshot%202023-07-18%20113043.png.webp?alt=media&token=efecfe3f-d9db-48fe-9258-24a6069d4468"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of roles taable<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 4: </em> Add a screenshot of the UserRoles table with valid data</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T15.31.51Screenshot%202023-07-18%20113138.png.webp?alt=media&token=b536ff91-dcde-4da1-b48e-e45fc0342d7f"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of UserRrole table <br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 5: </em> Add the related pull request(s) for these features</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/aa2836/IT202-451/pull/17">https://github.com/aa2836/IT202-451/pull/17</a> </td></tr>
+<tr><td> <em>Sub-Task 6: </em> Explain briefly how the process/code works for login-protected pages</td></tr>
+<tr><td> <em>Response:</em> <p>It displays a login form with email/username and password fields. Upon submission, the<br>validate() function is called. The PHP code checks and validates the email/username and<br>password. If there are no errors, it proceeds with authentication, retrieving user data<br>and verifying the password. Successful login stores user data in $_SESSION[&quot;user&quot;] and assigned<br>roles in $_SESSION[&quot;user&quot;][&quot;roles&quot;]. A success message is shown, and the user is redirected<br>to home.php. Error messages are displayed if authentication fails. The flash message partial<br>is included to show messages on the page. In this code, there are<br>several helper functions that make certain tasks easier. The flash( function stores temporary<br>messages called flash messages, which can be shown to the user on later<br>pages. It&#39;s like leaving a note for someone to see later. The <code>se()</code><br>function helps safely extract information from a list, like getting someone&#39;s email address<br>from a form they filled out. If the value isn&#39;t available, a default<br>value can be used instead. The getDB() function establishes a connection to a<br>database, allowing us to retrieve user information and interact with the database. The<br><code>sanitize_email()</code> function ensures that an email address doesn&#39;t contain any harmful content and<br>is safe to use. The <code>is_valid_email()</code> function checks if an email address has<br>the correct format, following the right pattern. The <code>is_valid_username()</code> function validates a username,<br>considering its length and allowed characters. Lastly, the <code>is_valid_password()</code> function checks if a<br>password meets the necessary criteria, such as having a minimum length of 8<br>characters. These helper functions simplify tasks like storing messages, extracting data safely, connecting<br>to databases, and validating user input, making the code more efficient and secure.<br></p><br></td></tr>
+<tr><td> <em>Sub-Task 7: </em> Explain briefly how the process/code works for role-protected pages</td></tr>
+<tr><td> <em>Response:</em> <div>Users enter their email/username and password in the login form. The code validates<br>the form data both on the client-side (using JavaScript) and on the server-side<br>(using PHP).If there are no errors, the code checks if the email/username exists<br>in the database and verifies the provided password. If the login is successful,<br>the user's information (excluding the password) is stored in the session (`$_SESSION["user"]`).The code<br>retrieves the user's roles from the database and stores them in `$_SESSION["user"]["roles"]`.Flash messages<br>are displayed to provide feedback on the login process. On role-protected pages, the<br>presence and specific roles in `$_SESSION["user"]["roles"]` are checked to determine the user's access<br>permissions. Based on the user's roles, different functionalities or sections of the page<br>may be accessible or restricted.At the beginning of the code, the session is<br>initiated by using `session_start()`. This starts the session and enables the storage and<br>retrieval of data across different requests. After the user has been successfully authenticated,<br>their information such as ID, email, username, and roles is stored in the<br>`$_SESSION["user"]` variable. This makes it convenient to access the user's details on subsequent<br>pages without needing to repeatedly query the database. To provide temporary feedback to<br>the user, the `flash()` function is used to store flash messages in the<br>session. These messages can include success messages, error messages, or notifications related to<br>the login process. Later on, these stored messages are retrieved and displayed on<br>subsequent pages, ensuring the user receives appropriate feedback during their session.</div><div><br></div><div><br></div><br></td></tr>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 5: </em> Feature: Site should have basic styles/theme applied; everything should be styled </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshots to show examples of your site's styles/theme</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T15.38.37Screenshot%202023-07-18%20113621.png.webp?alt=media&token=4572193e-90de-43d0-81e3-bba3acd670db"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of  basic styles/theme applied<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T15.38.40Screenshot%202023-07-18%20113819.png.webp?alt=media&token=13948358-4719-44f9-bca6-fd86b1fb7c87"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of  basic styles/theme applied<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Add the related pull request(s) for this feature</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/aa2836/IT202-451/pull/16">https://github.com/aa2836/IT202-451/pull/16</a> </td></tr>
+<tr><td> <em>Sub-Task 3: </em> Briefly explain your CSS at a high level</td></tr>
+<tr><td> <em>Response:</em> <div>Certainly! Here's an explanation of the CSS code changes as if you made<br>them in the first person:</div><div><br></div><div>1. I decided to style different types of alert<br>messages to make them stand out. I created CSS classes for each type:<br>`.alert-success`, `.alert-warning`, `.alert-danger`, and `.alert-info`. I customized the background color, text color, border<br>color, and padding for each alert type to give them distinct appearances. This<br>way, I can easily apply the appropriate class to display different types of<br>messages. For the navigation menu on my webpage, I wanted the list items<br>(`nav li`) to be displayed horizontally. So, I added `display: inline` to make<br>them appear side by side. I also customized the background color, margin, padding,<br>and border-radius to give the list items a visually appealing style. Additionally, I<br>styled the links within the list items (`nav li a`) to have a<br>white text color and removed the underline decoration to make them look more<br>streamlined. To enhance the appearance of input fields on my webpage, I decided<br>to round the corners of the input elements. I achieved this by adding<br>`border-radius: 10px` to the input styles. Additionally, I added some padding (`padding: 5px`)<br>to give the inputs a bit of spacing between the text and the<br>border. Lastly, I wanted to set an overall style for my webpage. I<br>chose a soothing background color (`body { background-color: lavender;}`), a dark blue text<br>color (`color: midnightblue;`), and specified the font family as Arial or a sans-serif<br>font (`font-family: Arial, sans-serif;`).</div><div><br></div><br></td></tr>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 6: </em> Feature: Any output messages/errors should be "user friendly" </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshots of some examples of errors/messages</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T15.39.42Screenshot%202023-07-18%20112815.png.webp?alt=media&token=828a388a-8b90-4318-8bba-45b38a4dca51"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of 2 out of 3 diffrent error<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T15.40.02Screenshot%202023-07-16%20185958.png.webp?alt=media&token=c9dc0be1-5cc0-4391-b5e2-b51de8a5d03c"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of 1 out 3 diffrent error message<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Add a related pull request</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/aa2836/IT202-451/pull/10">https://github.com/aa2836/IT202-451/pull/10</a> </td></tr>
+<tr><td> <em>Sub-Task 3: </em> Briefly explain how you made messages user friendly</td></tr>
+<tr><td> <em>Response:</em> <div>The code checks if the required form fields (email, password, confirm, and username)<br>are empty using `empty()`. If any of them are empty, an appropriate flash<br>message with a "danger" alert type is displayed, informing the user that the<br>field must not be empty. This provides clear feedback to the user about<br>the missing information. To ensure the entered email address is safe and valid,<br>the code sanitizes the email using the `sanitize_email()` function and validates it with<br>`is_valid_email()`. Similarly, the username is validated using `is_valid_username()`. If either the email or<br>username is invalid, corresponding flash messages with a "danger" alert type are displayed,<br>explaining the specific validation requirements to the user. The code checks if the<br>password is too short using `is_valid_password()`. If the password is considered too short,<br>a flash message with a "danger" alert type is displayed, providing feedback about<br>the required password length. The code verifies if the password and confirm password<br>inputs match. If they don't match, a flash message with a "danger" alert<br>type is displayed, indicating that the passwords must match. If all the above<br>checks pass without any errors, it means the user input is valid. The<br>code proceeds to hash the password using `password_hash()` and inserts the user's email,<br>hashed password, and username into the database. Upon successful registration, a flash message<br>with a "success" alert type is displayed, informing the user about their successful<br>registration.<br></div><div><br></div><div><br></div><br></td></tr>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 7: </em> Feature: Users will be able to see their profile </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshots of the User Profile page</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T15.42.02Screenshot%202023-07-18%20114152.png.webp?alt=media&token=531eb20d-9753-420f-b632-ce5600d042f3"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of user name and profile properly filled<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Add the related pull request(s) for this feature</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/aa2836/IT202-451/pull/14">https://github.com/aa2836/IT202-451/pull/14</a> </td></tr>
+<tr><td> <em>Sub-Task 3: </em> Explain briefly how the process/code works (view only)</td></tr>
+<tr><td> <em>Response:</em> <div>&nbsp;It retrieves the user's email and username by calling `get_user_email()` and `get_username()` functions,<br>respectively. These functions are responsible for retrieving the corresponding data from the session<br>or the database. The retrieved email and username are then assigned to the<br>variables `$email` and `$username`, respectively. In the HTML form, the input fields for<br>email and username have their `value` attributes set to `&lt;?php se($email); ?&gt;` and<br>`&lt;?php se($username); ?&gt;`, respectively. This ensures that the stored email and username values<br>are pre-filled in the input fields when the form is displayed.&nbsp;</div><br></td></tr>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 8: </em> Feature: User will be able to edit their profile </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshots of the User Profile page validation messages and success messages</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T16.59.09Screenshot%202023-07-18%20122429.png.webp?alt=media&token=22af8f65-a3d4-4f92-985d-1fd35f5069b6"/></td></tr>
+<tr><td> <em>Caption:</em> <p>username validation/already in use<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T16.59.13Screenshot%202023-07-18%20122613.png.webp?alt=media&token=55db65c4-b39d-4d55-929e-b64462c9b53b"/></td></tr>
+<tr><td> <em>Caption:</em> <p>email validation/already in use<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T16.59.20Screenshot%202023-07-18%20122727.png.webp?alt=media&token=4889af48-2341-4729-bb01-939881611ac4"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc showing password missmatch/validation <br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Add before and after screenshots of the Users table when a user edits their profile</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T16.56.45Screenshot%202023-07-18%20124213.png.webp?alt=media&token=a85ec31c-ea99-4309-a8f5-8d3089e9ce23"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of valid user information to update<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T16.57.27Screenshot%202023-07-18%20124055.png.webp?alt=media&token=46eaae3e-aaaa-4c33-978f-7aaece9d3af0"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of befefore user table<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T16.57.32Screenshot%202023-07-18%20124341.png.webp?alt=media&token=dafd4826-c76e-44c5-bae5-19feec93f354"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of after user table <br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 3: </em> Add the related pull request(s) for this feature</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/aa2836/IT202-451/pull/14">https://github.com/aa2836/IT202-451/pull/14</a> </td></tr>
+<tr><td> <em>Sub-Task 4: </em> Explain briefly how the process/code works (edit only)</td></tr>
+<tr><td> <em>Response:</em> <div>&nbsp;When the form is submitted (by clicking the "Update Profile" button), the code<br>checks if the `$_POST["save"]` variable is set, indicating that the form was submitted<br>for saving changes. It retrieves the new email and username values using the<br>`se()` function and assigns them to the `$email` and `$username` variables, respectively. The<br>code then sanitizes the email using the `sanitize_email()` function and validates it with<br>`is_valid_email()`. If the email is invalid, a flash message with a "danger" alert<br>type is displayed. Similarly, the username is validated using `is_valid_username()`. If the username<br>is invalid, a flash message with a "danger" alert type is displayed. If<br>no validation errors occur, the code updates the email and username in the<br>database using an SQL `UPDATE` statement. After updating, a flash message with a<br>"success" alert type is displayed to inform the user that the profile has<br>been saved. Finally, the code fetches the updated email and username from the<br>database and updates the corresponding values in the `$_SESSION["user"]` variable. The code checks<br>if the current password, new password, and confirm password fields are not empty.<br>It validates the new password using `is_valid_password()`. If the password is considered too<br>short, a flash message with a "danger" alert type is displayed. If no<br>validation errors occur, the code retrieves the current password from the database and<br>checks if it matches the entered current password using `password_verify()`. If the current<br>password is valid, the code updates the password in the database using an<br>SQL `UPDATE` statement, hashing the new password with `password_hash()`.&nbsp; After updating, a flash<br>message with a "success" alert type is displayed to inform the user that<br>the password has been reset. The form includes a JavaScript function named `validate()`,<br>which is called when the form is submitted. The function performs client-side validation,<br>such as checking if the new password and confirm password fields match.&nbsp; If<br>there are validation errors, a flash message with a "warning" alert type is<br>displayed using JavaScript.</div><div><br></div><div><br></div><br></td></tr>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 9: </em> Issues and Project Board </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshots showing which issues are done/closed (project board) Incomplete Issues should not be closed</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Faa2836%2F2023-07-18T16.55.47Screenshot%202023-07-18%20125148.png.webp?alt=media&token=70fa5805-5760-4ce3-b5f1-ca1e454a91e7"/></td></tr>
+<tr><td> <em>Caption:</em> <p>sc of completed project board<br></p>
+</td></tr>
+</table></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Include a direct link to your Project Board</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/users/aa2836/projects/2/views/1?layout=board">https://github.com/users/aa2836/projects/2/views/1?layout=board</a> </td></tr>
+<tr><td> <em>Sub-Task 3: </em> Prod Application Link to Login Page</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://aa2836-prod.herokuapp.com/Project/login.php">https://aa2836-prod.herokuapp.com/Project/login.php</a> </td></tr>
+</table></td></tr>
+<table><tr><td><em>Grading Link: </em><a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT202-451-M23/it202-milestone1-deliverable/grade/aa2836" target="_blank">Grading</a></td></tr></table>
