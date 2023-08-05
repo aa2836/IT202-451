@@ -3,11 +3,14 @@ require(__DIR__ . "/../../partials/nav.php");
 
 $results = [];
 $db = getDB();
+//process filters/sorting
 //Sort and Filters
-$col = se($_GET, "col", "cost", false);
+//aa2836 8/5/2023
+
+$col = se($_GET, "col", "unit_price", false);
 //allowed list
-if (!in_array($col, ["cost", "stock", "name", "created", "out_stock", "average_rating", "category"])) {
-    $col = "cost"; //default value, prevent sql injection
+if (!in_array($col, ["unit_price", "stock", "name", "created", "out_stock", "average_rating", "category"])) {
+    $col = "unit_price"; //default value, prevent sql injection
 }
 $order = se($_GET, "order", "asc", false);
 //allowed list
@@ -17,12 +20,14 @@ if (!in_array($order, ["asc", "desc"])) {
 $name = se($_GET, "name", "", false);
 
 //split query into data and total
-$base_query = "SELECT id, name, description, cost, stock, image FROM Products";
+$base_query = "SELECT id, name, description, unit_price, stock FROM Products"; // Removed trailing comma
 $total_query = "SELECT count(1) as total FROM Products";
 //dynamic query
 $query = " WHERE 1=1"; //1=1 shortcut to conditionally build AND clauses
 $params = []; //define default params, add keys as needed and pass to execute
 //apply name filter
+
+//aa2836 8/5/2023
 if (!empty($name)) {
     $query .= " AND name like :name";
     $params[":name"] = "%$name%";
@@ -35,7 +40,7 @@ if (!empty($col) && !empty($order) && $col=="out_stock") {
     $query = " WHERE stock = 0"; //be sure you trust these values, I validate via the in_array checks above
 }
 //paginate function
-$per_page = 3;
+$per_page = 5;
 paginate($total_query . $query, $params, $per_page);
 
 $query .= " LIMIT :offset, :count";
@@ -51,7 +56,7 @@ foreach ($params as $key => $value) {
 $params = null; //set it to null to avoid issues
 
 
-//$stmt = $db->prepare("SELECT id, name, description, cost, stock, image FROM BGD_Items WHERE stock > 0 LIMIT 50");
+//$stmt = $db->prepare("SELECT id, name, description, cost, stock,  FROM BGD_Items WHERE stock > 0 LIMIT 50");
 try {
     $stmt->execute($params); //dynamically populated params to bind
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -74,7 +79,7 @@ try {
     }
 </style>
 <script>
-    function cart(item, cost) {
+    function cart(item, unit_price) {
         console.log("TODO purchase item", item);
         let example = 1;
         if (example === 1) {
@@ -94,7 +99,7 @@ try {
             let data = {
                 item_id: item,
                 quantity: 1,
-                cost: cost
+                unit_price: unit_price
             }
             let q = Object.keys(data).map(key => key + '=' + data[key]).join('&');
             console.log(q)
@@ -104,7 +109,7 @@ try {
             let data = new FormData();
             data.append("item_id", item);
             data.append("quantity", 1);
-            data.append("cost", cost);
+            data.append("unit_price", unit_price);
             fetch("api/purchase_item.php", {
                     method: "POST",
                     headers: {
@@ -126,7 +131,7 @@ try {
             $.post("api/puchase_item.php", {
                     item_id: item,
                     quantity: 1,
-                    cost: cost
+                    unit_price: unit_price
                 }, (resp, status, xhr) => {
                     console.log(resp, status, xhr);
                     let data = JSON.parse(resp);
@@ -155,7 +160,7 @@ try {
                 <div class="input-group-text">Sort</div>
                 <!-- make sure these match the in_array filter above-->
                 <select class="form-control" name="col" value="<?php se($col); ?>">
-                    <option value="cost">Cost</option>
+                    <option value="unit_price">Price</option>
                     <option value="category">Category</option>
                     <option value="stock">Stock</option>
                     <option value="name">Name</option>
@@ -194,11 +199,11 @@ try {
                     <div class="card-header">
                         <?php se($item, "name"); ?>
                         <span class="float-end">
-                            Cost: <?php se($item, "cost"); ?>
+                            Cost: <?php se($item, "unit_price"); ?>
                         </span>
                     </div>
-                    <?php if (se($item, "image", "", false)) : ?>
-                        <img src="<?php se($item, "image"); ?>" class="card-img-top" alt="...">
+                    <?php if (se($item,  "", false)) : ?>
+                        <img src="<?php se($item); ?>" class="card-img-top" alt="...">
                     <?php endif; ?>
 
                     <div class="card-body">
@@ -208,10 +213,11 @@ try {
                     
                         <!-- Buttons -->
                         <div class="d-flex justify-content-between mt-3">
-                            <button onclick="cart('<?php se($item, 'id'); ?>','<?php se($item, 'cost'); ?>')" class="btn btn-outline-primary">Add to Cart</button>
+                        <button onclick="cart('<?php se($item, 'id'); ?>','<?php se($item, 'unit_price'); ?>')" class="btn btn-outline-primary">Add to Cart</button>
                             <form action="product_details.php" method="PUT">
                                 <input type="hidden" name="id" value="<?php se($item, 'id'); ?>" />
-                                <button onclick="details('<?php se($item, 'id'); ?>','<?php se($item, 'cost'); ?>')" class="btn btn-outline-secondary">Details</button>
+                                <button onclick="details('<?php se($item, 'id'); ?>','<?php se($item, 'unit_price'); ?>')" class="btn btn-outline-secondary">Details</button>
+
                             </form>
                         </div>
                     </div>
