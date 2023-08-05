@@ -24,6 +24,14 @@ reset_session();
         <input type="submit" class="mt-3 btn btn-primary" value="Register" />
     </form>
 </div>
+<script>
+    function validate(form) {
+        //TODO 1: implement JavaScript validation
+        //ensure it returns false for an error and true for success
+
+        return true;
+    }
+</script>
 <?php
 //TODO 2: add PHP Code
 if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"]) && isset($_POST["username"])) {
@@ -81,5 +89,5 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
 }
 ?>
 <?php
-require(__DIR__ . "/../../partials/flash.php");
+require(__DIR__ . "/../../partials/footer.php");
 ?>
