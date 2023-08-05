@@ -1,7 +1,7 @@
 .alert-success {
     background-color: lightgreen;
-    color: darkgreen;
-    border: 2px solid darkgreen;
+    color: rgb(155, 252, 155);
+    border: 2px solid rgb(155, 247, 155);
     padding: 10px;
 }
 
