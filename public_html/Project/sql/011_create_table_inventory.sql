@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS Cart
     `product_id` int,
     `user_id` int,
     `desired_quantity` int,
-    `unit_cost` int,
+    `unit_price` int,
     `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `modified` TIMESTAMP DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
 
