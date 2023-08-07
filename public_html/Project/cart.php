@@ -1,148 +1,153 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
-require_once(__DIR__ . "/../../lib/functions.php");
-?>
-<?php
-$results = [];
-if(isset($_POST["delete"])){
-    if(delete_item($_POST["productid"], get_user_id())){
-        flash("Item removed from the cart", "success");;
+
+is_logged_in(true);
+
+$action = strtolower(trim(se($_POST, "action","", false)));
+if (!empty($action)) {
+    $db = getDB();
+    switch ($action) {
+        case "add":
+            $query = "INSERT INTO Cart (item_id, desired_quantity, unit_price, user_id)
+            VALUES (:iid, :dq, (SELECT cost FROM Products where id = :iid), :uid) ON DUPLICATE KEY UPDATE
+            desired_quantity = desired_quantity + :dq";
+            $stmt = $db->prepare($query);
+            $stmt->bindValue(":iid", se($_POST, "item_id", 0, false), PDO::PARAM_INT);
+            $stmt->bindValue(":dq", se($_POST, "desired_quantity", 0, false), PDO::PARAM_INT);
+            $stmt->bindValue(":uid", get_user_id(), PDO::PARAM_INT);
+            try {
+                $stmt->execute();
+                flash("Added item to cart", "success");
+            } catch (PDOException $e) {
+                error_log(var_export($e, true));
+                flash("Error adding item to cart", "danger");
+            }
+            break;
+        case "update":
+            $query = "UPDATE Cart set desired_quantity = :dq WHERE id = :cid AND user_id = :uid";
+            $stmt = $db->prepare($query);
+            $stmt->bindValue(":dq", se($_POST, "desired_quantity", 0, false), PDO::PARAM_INT);
+            //cart id specifies a specific cart item
+            $stmt->bindValue(":cid", se($_POST, "cart_id", 0, false), PDO::PARAM_INT);
+            //user id ensures we can only edit our cart
+            $stmt->bindValue(":uid", get_user_id(), PDO::PARAM_INT);
+            try {
+                $stmt->execute();
+                flash("Updated item quantity", "success");
+            } catch (PDOException $e) {
+                //TODO handle item removal when desired_quantity is <= 0
+                //TODO handle any other update related rules per your proposal
+                error_log(var_export($e, true));
+                flash("Error updating item quantity", "danger");
+            }
+            break;
+        case "delete":
+            //flash("Developer: You implement this logic", "warning");
+            //TODO you do this part
+            case "delete":
+                $query = "DELETE FROM Cart WHERE id = :cid AND user_id = :uid";
+                $stmt = $db->prepare($query);
+                $stmt->bindValue(":cid", se($_POST, "cart_id", 0, false), PDO::PARAM_INT);
+                $stmt->bindValue(":uid", get_user_id(), PDO::PARAM_INT);
+                try {
+                    $stmt->execute();
+                    flash("Item removed from cart", "success");
+                } catch (PDOException $e) {
+                    error_log(var_export($e, true));
+                    flash("Error removing item from cart", "danger");
+                }
+                break;
+
+            case "clear":
+                $query = "DELETE FROM Cart WHERE user_id = :uid";
+                $stmt = $db->prepare($query);
+                $stmt->bindValue(":uid", get_user_id(), PDO::PARAM_INT);
+                try {
+                    $stmt->execute();
+                    flash("All items removed from cart", "success");
+                } catch (PDOException $e) {
+                    error_log(var_export($e, true));
+                    flash("Error clearing cart", "danger");
+                }
+                break;
     }
 }
-if(isset($_POST["empty"])){
-    if(empty_cart(get_user_id())){
-        flash("All item removed from the cart", "success");;
-    }
-}
-$user_id = get_user_id();
+$query = "SELECT cart.id, item.stock, item.name, cart.unit_price, (cart.unit_price * cart.desired_quantity) as subtotal, cart.desired_quantity
+FROM Products as item JOIN Cart as cart on item.id = cart.item_id
+ WHERE cart.user_id = :uid";
 $db = getDB();
-$stmt = $db->prepare("SELECT product_id, name, /*user_id,*/ desired_quantity, unit_cost FROM Cart JOIN Products on Cart.product_id = Products.id WHERE user_id = :uid");
+$stmt = $db->prepare($query);
+$cart = [];
 try {
-    $stmt->execute([":uid" => $user_id]);
-    $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    if ($r) {
-        $results = $r;
+    $stmt->execute([":uid" => get_user_id()]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($results) {
+        $cart = $results;
     }
 } catch (PDOException $e) {
-    flash("<pre>" . var_export($e, true) . "</pre>");
+    error_log(var_export($e, true));
+    flash("Error fetching cart", "danger");
 }
-    
 ?>
-<script>
-    function update_quantity(event,itemid) {
-        event.preventDefault()
-        var x = event.target.value;
-        console.log("TODO Update quantity item", itemid);
-            let http = new XMLHttpRequest();
-            http.onreadystatechange = () => {
-                if (http.readyState == 4) {
-                    if (http.status === 200) {
-                        let data = JSON.parse(http.responseText);
-                        console.log("received data", data);
-                        flash(data.message, "success");
-                        if (data.message.indexOf("remove")>-1){
-                            event.target.parentElement.parentElement.remove();
-                        }
-                    }
-                    console.log(http);
-                }
-            }
-            http.open("POST", "api/update_quantity.php");
-            let data = {
-                item_id: itemid,
-                quantity: x
-            } //toegel is amazing 
-            let q = Object.keys(data).map(key => key + '=' + data[key]).join('&');
-            console.log(q)
-            http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            http.send(q);
-    }
-</script>
 
 <div class="container-fluid">
     <h1>Cart</h1>
-        <table class="table text-light">
-            <!--<?php print_r($results)  ?>-->
-            <?php global $cart_total; ?>
-            <?php global $total; ?>
-            <?php global $temp_id;?>
-            <?php global $temp_quantity;?>
-            <?php global $temp_cost;?>
-            <?php $temp_quantity = 0;?>
-            <?php foreach ($results as $index => $record) : ?> <!-- $result with all the information -->
-                <?php if ($index == 0) : ?>       <!-- $index is the number of rows in table  -->
-                    <thead>
-                            <tr>
-                                <th width="35%">Product</th>
-                                <th width="8%">Quantity</th>
-                                <th width ="15%"> </th>
-                                <th width="15%">Price</th>
-                                <th class="text-right" width="15%">Total</th>
-                            </tr>
-                        </thead>
-                    <thead>
-                        <?php foreach ($record as $column => $value) : ?>
-                            <!--<th><?php se($column); ?></th>--><!-- column names "header"-->
-                            
-                        <?php endforeach; ?>
-                    </thead>
-                <?php endif; ?>
-                <tr>
-                    <?php foreach ($record as $column => $value) : ?> <!-- for each row-->
-                            <?php if($column == "product_id") :?>
-                                <?php $temp_id = $value;?>
-                            <?php endif; ?>
-                            <?php if($column == "name") :?>
-                                <?php $temp_quantity = $value;?>
-                                <td><?php echo $value ?></td>
-                            <?php endif; ?>
-                            <?php if($column == "unit_cost") :?>
-                                <?php $temp_cost = $value?>
-                                <td> </td>
-                                <td><?php echo "$",$value ?></td>
-                            <?php endif; ?>
-                            <?php if($column == "desired_quantity") :?>
-                                <?php $temp_quantity = $value;?>
-                                <td><input class="form-control" type="number" id="lname" value="<?php echo $value ;?>" onchange ="update_quantity(event,'<?php se($temp_id); ?>')"/></td>
-                            <?php endif; ?>
-                            
-                        <!--<?php se($value, null, "N/A"); ?></td>--> <!--display values in a row "----"-->  
-                    <?php endforeach; ?>
-                <?php $total = $temp_quantity * $temp_cost;?> <!--calculating total for each item  -->
-                <?php $cart_total = $cart_total + $total;?>
-                <td><?php echo "$",$total ?></td>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php $total = 0; ?>
+        <?php foreach ($cart as $c) : ?>
+            <tr>
+                <td><?php se($c, "name"); ?></td>
+                <td><?php se($c, "unit_price"); ?></td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="cart_id" value="<?php se($c, "id"); ?>" />
+                        <input type="hidden" name="action" value="update" />
+                        <input type="number" name="desired_quantity" value="<?php se($c, "desired_quantity"); ?>" min="1" max="<?php se($c, "stock"); ?>" />
+                        <input type="submit" class="btn btn-primary" value="Update Quantity" />
+                    </form>
+                </td>
+                <td><?php se($c, "subtotal"); ?></td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="cart_id" value="<?php se($c, "id"); ?>" />
+                        <input type="hidden" name="action" value="delete" />
+                        <input type="submit" class="btn btn-danger" value="x" />
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        <?php if (count($cart) == 0) : ?>
+            <tr>
+                <td colspan="100%">No items in cart</td>
+            </tr>
+        <?php endif; ?>
+        <tr>
+            <td colspan="4"></td>
+            <td>
+                <!-- Clear Cart Button -->
                 <form method="POST">
-                <input type="hidden" name="productid" value="<?php echo$temp_id;?>" ></input>
-                <td><button type = "submit" class = "btn btn-sm btn-danger" onclick="" name ="delete">Remove</button> </td>
+                    <input type="hidden" name="action" value="clear" />
+                    <input type="submit" class="btn btn-danger" value="Clear Cart" />
                 </form>
-                </tr>
-            <?php endforeach; ?>
-            <div >      
-                <thead >
-                    <?php if($temp_quantity > 0) :?>
-                        <tr >
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <th > <?php echo "Cart Total :"?></th>
-                            </td>
-                                <th> <?php echo "$",$cart_total ?></th>
-                                <form method="POST">
-                                <td><button type = "submit" name ="empty" class = "btn btn-sm btn-danger" onclick="">Empty the cart</button></td>
-                                </form>
-                        </tr> 
-                    <?php endif; ?>
-                </thead>
-                <?php if($temp_quantity == 0) :?>
-                    <h3 class="text" style="text-align:center"  >Your cart is empty</h3>
-                <?php endif; ?>
-            </div>
-        </table>
-        <form action="checkout.php"method="PUT">
-                                <!--<input type="hidden" name="ordertotal" value="<?php echo$cart_total;?>" ></input>-->
-                                <button style= "margin-top: 30px; width: 200px" type = "submit"  name ="Checkout"  class = "btn btn-primary btn-lg col-12">Checkout</button> 
-                                </form> 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="100%">Total: <?php se($total, null, 0); ?></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
+
 <?php
 require(__DIR__ . "/../../partials/footer.php");
 ?>

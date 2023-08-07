@@ -1,242 +1,137 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
 
+$itemsPerPage = 4; // Number of items to display per page
+
+// Get the current page number from the URL or set a default value of 1
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $itemsPerPage;
+
+$filterName = $_GET['filter_name'] ?? '';
+$sortBy = $_GET['sort_by'] ?? 'name'; // default sort by name
+
 $results = [];
 $db = getDB();
-//process filters/sorting
-//Sort and Filters
-//aa2836 8/5/2023
+$totalItems = 0;
 
-$col = se($_GET, "col", "unit_price", false);
-//allowed list
-if (!in_array($col, ["unit_price", "stock", "name", "created", "out_stock", "average_rating", "category"])) {
-    $col = "unit_price"; //default value, prevent sql injection
-}
-$order = se($_GET, "order", "asc", false);
-//allowed list
-if (!in_array($order, ["asc", "desc"])) {
-    $order = "asc"; //default value, prevent sql injection
-}
-$name = se($_GET, "name", "", false);
+$query = "SELECT SQL_CALC_FOUND_ROWS id, name, description, cost, stock, image 
+          FROM Products 
+          WHERE stock > 0";
 
-//split query into data and total
-$base_query = "SELECT id, name, description, unit_price, stock FROM Products"; // Removed trailing comma
-$total_query = "SELECT count(1) as total FROM Products";
-//dynamic query
-$query = " WHERE 1=1"; //1=1 shortcut to conditionally build AND clauses
-$params = []; //define default params, add keys as needed and pass to execute
-//apply name filter
-
-//aa2836 8/5/2023
-if (!empty($name)) {
-    $query .= " AND name like :name";
-    $params[":name"] = "%$name%";
+if (!empty($filterName)) {
+    $query .= " AND name LIKE :filterName";
 }
-//apply column and order sort
-if (!empty($col) && !empty($order) && $col != "out_stock") {
-    $query .= " ORDER BY $col $order"; //be sure you trust these values, I validate via the in_array checks above
-}
-if (!empty($col) && !empty($order) && $col=="out_stock") {
-    $query = " WHERE stock = 0"; //be sure you trust these values, I validate via the in_array checks above
-}
-//paginate function
-$per_page = 5;
-paginate($total_query . $query, $params, $per_page);
 
-$query .= " LIMIT :offset, :count";
-$params[":offset"] = $offset;
-$params[":count"] = $per_page;
-//get the records
-$stmt = $db->prepare($base_query . $query); //dynamically generated query
-//we'll want to convert this to use bindValue so ensure they're integers so lets map our array
-foreach ($params as $key => $value) {
-    $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
-    $stmt->bindValue($key, $value, $type);
+switch ($sortBy) {
+    case 'cost':
+        $query .= " ORDER BY cost ASC";
+        break;
+    case 'category':
+        $query .= " ORDER BY category ASC"; // Assuming the column name in your database is "category".
+        break;
+    default:
+        $query .= " ORDER BY name ASC";  // defaults to name if none of the criteria match.
+        break;
 }
-$params = null; //set it to null to avoid issues
 
+$query .= " LIMIT :offset, :itemsPerPage";
 
-//$stmt = $db->prepare("SELECT id, name, description, cost, stock,  FROM BGD_Items WHERE stock > 0 LIMIT 50");
+$stmt = $db->prepare($query);
+$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+$stmt->bindParam(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+if (!empty($filterName)) {
+    $filterTerm = "%" . $filterName . "%";
+    $stmt->bindParam(':filterName', $filterTerm, PDO::PARAM_STR);
+}
+
 try {
-    $stmt->execute($params); //dynamically populated params to bind
+    $stmt->execute();
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($r) {
         $results = $r;
     }
+
+    // Get the total number of items in the database (without the LIMIT)
+    $stmtTotal = $db->query("SELECT FOUND_ROWS()");
+    $totalItems = intval($stmtTotal->fetchColumn());
 } catch (PDOException $e) {
-    flash("<pre>" . var_export($e, true) . "</pre>");
+    error_log(var_export($e, true));
+    flash("Error fetching items", "danger");
 }
 ?>
-<style>
-    .card {
-        border: 1px solid #eaeaea;
-        border-radius: 8px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
-    .equal-card {
-        height: 100%; 
-    }
-</style>
-<script>
-    function cart(item, unit_price) {
-        console.log("TODO purchase item", item);
-        let example = 1;
-        if (example === 1) {
-            let http = new XMLHttpRequest();
-            http.onreadystatechange = () => {
-                if (http.readyState == 4) {
-                    if (http.status === 200) {
-                        let data = JSON.parse(http.responseText);
-                        console.log("received data", data);
-                        flash(data.message, "success");
-                        /* refreshBalance(); */
-                    }
-                    console.log(http);
-                }
-            }
-            http.open("POST", "api/purchase_item.php", true);
-            let data = {
-                item_id: item,
-                quantity: 1,
-                unit_price: unit_price
-            }
-            let q = Object.keys(data).map(key => key + '=' + data[key]).join('&');
-            console.log(q)
-            http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            http.send(q);
-        } else if (example === 2) {
-            let data = new FormData();
-            data.append("item_id", item);
-            data.append("quantity", 1);
-            data.append("unit_price", unit_price);
-            fetch("api/purchase_item.php", {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/x-www-form-urlencoded",
-                        "X-Requested-With": "XMLHttpRequest",
-                    },
-                    body: data
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    flash(data.message, "success");
-                    //refreshBalance();
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-        } else if (example === 3) {
-            $.post("api/puchase_item.php", {
-                    item_id: item,
-                    quantity: 1,
-                    unit_price: unit_price
-                }, (resp, status, xhr) => {
-                    console.log(resp, status, xhr);
-                    let data = JSON.parse(resp);
-                    flash(data.message, "success");
-                    //refreshBalance();
-                },
-                (xhr, status, error) => {
-                    console.log(xhr, status, error);
-                });
-        }
-        //TODO create JS helper to update all show-balance elements
-    }
-</script>
 
 <div class="container-fluid">
-    <h1>WORLD SOCCER SHOP</h1>
-    <form class="row row-cols-auto g-3 align-items-center">
-        <div class="col">
-            <div class="input-group">
-                <div class="input-group-text">Name</div>
-                <input class="form-control" name="name" value="<?php se($name); ?>" />
+    <h1>World Soccer Shop</h1>
+
+    <!-- Filter & Sort UI -->
+    <form method="GET" action="">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Filter by name:</label>
+                <input type="text" name="filter_name" value="<?php echo htmlspecialchars($filterName); ?>"/>
             </div>
-        </div>
-        <div class="col">
-            <div class="input-group">
-                <div class="input-group-text">Sort</div>
-                <!-- make sure these match the in_array filter above-->
-                <select class="form-control" name="col" value="<?php se($col); ?>">
-                    <option value="unit_price">Price</option>
-                    <option value="category">Category</option>
-                    <option value="stock">Stock</option>
-                    <option value="name">Name</option>
-                    <option value="created">Created</option>
-                    <option value="average_rating">Average Rating</option>
-                    <?php if (has_role("Admin")) : ?>
-                        <option value="out_stock">Out of Stock</option>
-                    <?php endif; ?>
+            <div class="col-md-4">
+                <label>Sort by:</label>
+                <select name="sort_by">
+                    <option value="catagory" <?php echo $sortBy == 'catagory' ? 'selected' : ''; ?>>Catagory</option>
+                    <option value="cost" <?php echo $sortBy == 'cost' ? 'selected' : ''; ?>>Price</option>
                 </select>
-                <script>
-                    //quick fix to ensure proper value is selected since
-                    //value setting only works after the options are defined and php has the value set prior
-                    document.forms[0].col.value = "<?php se($col); ?>";
-                </script>
-                <select class="form-control" name="order" value="<?php se($order); ?>">
-                    <option value="asc">Up</option>
-                    <option value="desc">Down</option>
-                </select>
-                <script>
-                    //quick fix to ensure proper value is selected since
-                    //value setting only works after the options are defined and php has the value set prior
-                    document.forms[0].order.value = "<?php se($order); ?>";
-                </script>
             </div>
-        </div>
-        <div class="col">
-            <div class="input-group">
-                <input type="submit" class="btn btn-primary" value="Apply" />
+            <div class="col-md-4">
+                <input type="submit" value="Apply" class="btn btn-primary mt-2"/>
             </div>
         </div>
     </form>
-        <div class="row row-cols-1 row-cols-md-5 g-4">
-        <?php foreach ($results as $item) : ?>
-            <div class="col">
-                <div class="card bg-light equal-card">
-                    <div class="card-header">
-                        <?php se($item, "name"); ?>
-                        <span class="float-end">
-                            Cost: <?php se($item, "unit_price"); ?>
-                        </span>
-                    </div>
-                    <?php if (se($item,  "", false)) : ?>
-                        <img src="<?php se($item); ?>" class="card-img-top" alt="...">
+
+    <div class="row row-cols-sm-2 row-cols-xs-1 row-cols-md-3 row-cols-lg-6 g-4">
+    <?php foreach ($results as $item) : ?>
+        <div class="col">
+            <div class="card bg-light">
+                <div class="card-header">
+                    RM Placeholder
+                </div>
+                <?php if (se($item, "image", "", false)) : ?>
+                    <img src="<?php se($item, "image"); ?>" class="card-img-top" alt="...">
+                <?php endif; ?>
+
+                <div class="card-body">
+                    <h5 class="card-title">Name: <?php se($item, "name"); ?></h5>
+                    <p class="card-text">Description: <?php se($item, "description"); ?></p>
+                </div>
+                <div class="card-footer">
+                    Cost: <?php se($item, "cost"); ?>
+                    <form method="POST" action="cart.php">
+                        <input type="hidden" name="item_id" value="<?php se($item, "id"); ?>"/>
+                        <input type="hidden" name="action" value="add"/>
+                        <input type="number" name="desired_quantity" value="1" min="1" max="<?php se($item, "stock"); ?>"/>
+                        <input type="submit" class="btn btn-primary" value="Add to Cart"/>
+                    </form>
+                    <a href="product_details.php?id=<?php se($item, 'id'); ?>" class="btn btn-info">Details</a>
+                    <?php if (has_role("Admin")): ?>
+                        <a href="admin/edit_item.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">Edit</a>
                     <?php endif; ?>
-
-                    <div class="card-body">
-                        <h5 class="card-title">Name: <?php se($item, "name"); ?></h5>
-                        <p class="card-text">Description: <?php se($item, "description"); ?></p>
-                        <p><?php se($item, "average_rating"); ?></p>
-                    
-                        <!-- Buttons -->
-                        <div class="d-flex justify-content-between mt-3">
-                        <button onclick="cart('<?php se($item, 'id'); ?>','<?php se($item, 'unit_price'); ?>')" class="btn btn-outline-primary">Add to Cart</button>
-                            <form action="product_details.php" method="PUT">
-                                <input type="hidden" name="id" value="<?php se($item, 'id'); ?>" />
-                                <button onclick="details('<?php se($item, 'id'); ?>','<?php se($item, 'unit_price'); ?>')" class="btn btn-outline-secondary">Details</button>
-
-                            </form>
-                        </div>
-                    </div>
-                
-                    <div class="card-footer">
-                        <?php if (has_role("Admin")) : ?> 
-                            <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>" class="btn btn-sm btn-outline-dark">
-                                <i class="fa fa-pencil"></i> Edit
-                            </a>
-                        <?php endif; ?>
-                    </div>
                 </div>
             </div>
+        </div>
         <?php endforeach; ?>
-    </div>
 
-    <!-- this will be moved into a partial file for reusability-->
-    <?php include(__DIR__ . "/../../partials/pagination.php"); ?>
+    <!-- Pagination -->
+    <?php if ($totalItems > $itemsPerPage) : ?>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <?php
+                $totalPages = ceil($totalItems / $itemsPerPage);
+                for ($i = 1; $i <= $totalPages; $i++) {
+                    echo '<li class="page-item' . ($page == $i ? ' active' : '') . '">';
+                    echo '<a class="page-link" href="?page=' . $i . '&filter_name=' . urlencode($filterName) . '&sort_by=' . urlencode($sortBy) . '">' . $i . '</a>';
+                    echo '</li>';
+                }
+                ?>
+            </ul>
+        </nav>
+    <?php endif; ?>
 </div>
-<?php
-require(__DIR__ . "/../../partials/footer.php");
+
+<?php require(__DIR__ . "/../../partials/footer.php"); 
 ?>
+

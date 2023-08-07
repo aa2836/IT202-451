@@ -10,7 +10,8 @@ if (!has_role("Admin")) {
 $results = [];
 if (isset($_POST["itemName"])) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id, name, description, stock, cost, image from Products WHERE name like :name LIMIT 50");
+    $stmt = $db->prepare("SELECT id, name, description, stock, cost FROM Products WHERE name LIKE :name LIMIT 50");
+
     try {
         $stmt->execute([":name" => "%" . $_POST["itemName"] . "%"]);
         $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -21,6 +22,7 @@ if (isset($_POST["itemName"])) {
         flash("<pre>" . var_export($e, true) . "</pre>");
     }
 }
+
 ?>
 <div class="container-fluid">
     <h1>List Items</h1>
@@ -33,7 +35,7 @@ if (isset($_POST["itemName"])) {
     <?php if (count($results) == 0) : ?>
         <p>No results to show</p>
     <?php else : ?>
-        <table class="table text-light">
+        <table class="table">
             <?php foreach ($results as $index => $record) : ?>
                 <?php if ($index == 0) : ?>
                     <thead>
