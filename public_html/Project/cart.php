@@ -132,6 +132,7 @@ try {
             </tr>
         <?php endif; ?>
         <tr>
+            
             <td colspan="4"></td>
             <td>
                 <!-- Clear Cart Button -->
