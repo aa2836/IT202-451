@@ -6,7 +6,8 @@ $itemsPerPage = 4; // Number of items to display per page
 // Get the current page number from the URL or set a default value of 1
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $offset = ($page - 1) * $itemsPerPage;
-
+//aa236 /6/2023
+// filter and sort logic 
 $filterName = $_GET['filter_name'] ?? '';
 $sortBy = $_GET['sort_by'] ?? 'name'; // default sort by name
 

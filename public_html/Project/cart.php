@@ -70,6 +70,43 @@ if (!empty($action)) {
                     flash("Error clearing cart", "danger");
                 }
                 break;
+                case "update":
+                    case "update":
+                        $desiredQuantity = se($_POST, "desired_quantity", 0, false);
+                        $itemId = se($_POST, "item_id", 0, false);
+                        if ($desiredQuantity <= 0) {
+                            // If the desired quantity is zero or negative, delete the item from the cart
+                            $query = "DELETE FROM Cart WHERE item_id = :iid AND user_id = :uid";
+                            $stmt = $db->prepare($query);
+                            $stmt->bindValue(":iid", $itemId, PDO::PARAM_INT);
+                            $stmt->bindValue(":uid", get_user_id(), PDO::PARAM_INT);
+                            try {
+                                $stmt->execute();
+                                flash("Item removed from cart", "success");
+                            } catch (PDOException $e) {
+                                error_log(var_export($e, true));
+                                flash("Error removing item from cart", "danger");
+                            }
+                        } else {
+                            // If the desired quantity is positive, update the item quantity
+                            $query = "UPDATE Cart SET desired_quantity = :dq WHERE item_id = :iid AND user_id = :uid";
+                            $stmt = $db->prepare($query);
+                            $stmt->bindValue(":dq", $desiredQuantity, PDO::PARAM_INT);
+                            $stmt->bindValue(":iid", $itemId, PDO::PARAM_INT);
+                            $stmt->bindValue(":uid", get_user_id(), PDO::PARAM_INT);
+                            try {
+                                $stmt->execute();
+                                flash("Updated item quantity", "success");
+                            } catch (PDOException $e) {
+                                // TODO handle any other update related rules per your proposal
+                                error_log(var_export($e, true));
+                                flash("Error updating item quantity", "danger");
+                            }
+                        }
+                        break;
+                    
+                
+                
     }
 }
 $query = "SELECT cart.id, item.stock, item.name, cart.unit_price, (cart.unit_price * cart.desired_quantity) as subtotal, cart.desired_quantity
@@ -111,6 +148,7 @@ try {
                 <td>
                     <form method="POST">
                         <input type="hidden" name="cart_id" value="<?php se($c, "id"); ?>" />
+                        <input type="hidden" name="item_id" value="<?php se($c, "item_id"); ?>" /> <!-- Add this line -->
                         <input type="hidden" name="action" value="update" />
                         <input type="number" name="desired_quantity" value="<?php se($c, "desired_quantity"); ?>" min="1" max="<?php se($c, "stock"); ?>" />
                         <input type="submit" class="btn btn-primary" value="Update Quantity" />
