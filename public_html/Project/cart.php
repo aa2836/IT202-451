@@ -136,6 +136,9 @@ try {
             <td colspan="4"></td>
             <td>
                 <!-- Clear Cart Button -->
+                
+                
+                
                 <form method="POST">
                     <input type="hidden" name="action" value="clear" />
                     <input type="submit" class="btn btn-danger" value="Clear Cart" />
