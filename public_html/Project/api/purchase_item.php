@@ -54,7 +54,7 @@ if (isset($_POST["item_id"]) && isset($_POST["quantity"])) {
     if ($isValid) {
         if ($quantity > 0) {
             // Add item to the cart
-            add_to_cart($item_id, $user_id, $quantity, $unit_price);
+            add_to_cart($item_id, $user_id, $quantity, $unit_price); // Fix: Use $unit_price instead of $cost
             http_response_code(200);
             $response["message"] = "Added $quantity of $name to cart";
         } else {
@@ -68,6 +68,5 @@ if (isset($_POST["item_id"]) && isset($_POST["quantity"])) {
         $response["message"] = "Log in to add to cart";
     }
 }
-
 
 echo json_encode($response);
