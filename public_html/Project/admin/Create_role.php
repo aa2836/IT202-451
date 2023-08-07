@@ -1,3 +1,4 @@
+v=reate_role.php
 <?php
 //note we need to go up 1 more directory
 require(__DIR__ . "/../../../partials/nav.php");
@@ -22,25 +23,26 @@ if (isset($_POST["name"]) && isset($_POST["description"])) {
             if ($e->errorInfo[1] === 1062) {
                 flash("A role with this name already exists, please try another", "warning");
             } else {
-                flash("Unknown error occured, please try again","danger");
-                erroe_log(var_export($e->errorInfo, true));
+                flash(var_export($e->errorInfo, true), "danger");
             }
         }
     }
 }
 ?>
-<h1>Create Role</h1>
-<form method="POST">
-    <div>
-        <label for="name">Name</label>
-        <input id="name" name="name" required />
-    </div>
-    <div>
-        <label for="d">Description</label>
-        <textarea name="description" id="d"></textarea>
-    </div>
-    <input type="submit" value="Create Role" />
-</form>
+<div class="container-fluid">
+    <h1>Create Role</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-control" id="name" name="name" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="d">Description</label>
+            <textarea class="form-control" name="description" id="d"></textarea>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Create Role" />
+    </form>
+</div>
 <?php
 //note we need to go up 1 more directory
 require_once(__DIR__ . "/../../../partials/flash.php");

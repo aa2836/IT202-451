@@ -53,7 +53,7 @@ if (isset($_POST["save"])) {
     $confirm_password = se($_POST, "confirmPassword", null, false);
     if (!empty($current_password) && !empty($new_password) && !empty($confirm_password)) {
         $hasError = false;
-        if (!is_valid_password($new_password)) {
+        if (!is_valid_password($password)) {
             flash("Password too short", "danger");
             $hasError = true;
         }
