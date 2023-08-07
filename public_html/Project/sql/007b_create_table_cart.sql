@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Cart(
+GiCREATE TABLE IF NOT EXISTS Cart(
     id int AUTO_INCREMENT PRIMARY  KEY,
     desired_quantity int,
     item_id int,
