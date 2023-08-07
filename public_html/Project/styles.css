@@ -1,51 +1,69 @@
+/* Alert styles with a vibrant appearance */
 .alert-success {
-    background-color: lightgreen;
-    color: darkgreen;
-    border: 2px solid darkgreen;
+    background-color: #4CAF50;  /* Green */
+    color: #FFFFFF;             /* White */
+    border: 2px solid #388E3C;  /* Darker Green */
     padding: 10px;
 }
 
 .alert-warning {
-    background-color: gold;
-    color: darkorange;
-    border: 2px solid darkorange;
+    background-color: #FFEB3B;  /* Bright Yellow */
+    color: #212121;             /* Dark Text */
+    border: 2px solid #FFC107;  /* Amber */
     padding: 10px;
 }
 
 .alert-danger {
-    background-color: indianred;
-    color: white;
-    border: 2px solid darkred;
+    background-color: #F44336;  /* Red */
+    color: #FFFFFF;             /* White */
+    border: 2px solid #E53935;  /* Darker Red */
     padding: 10px;
 }
 
 .alert-info {
-    background-color: lightblue;
-    color: darkblue;
-    border: 2px solid darkblue;
+    background-color: #2196F3;  /* Blue */
+    color: #FFFFFF;             /* White */
+    border: 2px solid #1976D2;  /* Darker Blue */
     padding: 10px;
 }
 
+/* Navigation styles with a daytime theme */
 nav li {
     display: inline;
-    background-color: darkslategray;
+    background-color: #00BCD4;  /* Cyan, inspired by the sky */
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
+    color: #FFFFFF;             /* White, for contrast */
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 nav li a {
-    color: white;
+    color: #FFFFFF;             /* White */
     text-decoration: none;
 }
 
-input {
-    border-radius: 10px;
-    padding: 5px;
+nav li:hover {
+    background-color: #0097A7;  /* A darker cyan for hover effect */
 }
 
+/* Input styles with a refreshing touch */
+input {
+    border: 2px solid #00BCD4;  /* Cyan */
+    border-radius: 10px;
+    padding: 10px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #0097A7;      /* A darker cyan for focus */
+}
+
+/* Overall body styles with a breezy feel */
 body {
-    background-color: lavender;
-    color: midnightblue;
-    font-family: Arial, sans-serif;
+    background-color: #E3F2FD;   /* Very light blue, like the sky */
+    color: #1A237E;              /* Indigo for text contrast */
+    font-family: 'Raleway', sans-serif; 
 }
